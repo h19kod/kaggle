@@ -94,8 +94,13 @@ def create_submission(
     competition = competition_crud.get(db, id=competition_id)
     if not competition:
         raise HTTPException(status_code=404, detail="Competition not found")
-    if competition.end_date and datetime.now(timezone.utc) > competition.end_date:
-        raise HTTPException(status_code=400, detail="Competition deadline has passed")
+    if competition.end_date:
+        now = datetime.now(timezone.utc)
+        end_date = competition.end_date
+        if end_date.tzinfo is None:
+            end_date = end_date.replace(tzinfo=timezone.utc)
+        if now > end_date:
+            raise HTTPException(status_code=400, detail="Competition deadline has passed")
     submission_in.competition_id = competition_id
     submission_in.user_id = current_user.id
     submission = submission_crud.create(db, obj_in=submission_in)

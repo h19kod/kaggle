@@ -6,11 +6,11 @@ from datetime import datetime
 class DiscussionPostBase(BaseModel):
     title: str
     content_body: str
-    category: Optional[str] = "General"
+    category: Optional[str] = "GENERAL"
 
 
 class DiscussionPostCreate(DiscussionPostBase):
-    author_id: int
+    author_id: Optional[int] = None
 
 
 class DiscussionPostUpdate(BaseModel):
@@ -33,7 +33,7 @@ class UpvoteBase(BaseModel):
 
 
 class UpvoteCreate(UpvoteBase):
-    user_id: int
+    user_id: Optional[int] = None
 
 
 class Upvote(UpvoteBase):

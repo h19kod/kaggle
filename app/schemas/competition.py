@@ -15,7 +15,7 @@ class CompetitionBase(BaseModel):
 
 
 class CompetitionCreate(CompetitionBase):
-    creator_id: int
+    creator_id: Optional[int] = None
 
 
 class CompetitionUpdate(BaseModel):
@@ -38,12 +38,12 @@ class Competition(CompetitionBase):
 
 
 class SubmissionBase(BaseModel):
-    competition_id: int
+    competition_id: Optional[int] = None
     submitted_file_url: str
 
 
 class SubmissionCreate(SubmissionBase):
-    user_id: int
+    user_id: Optional[int] = None
 
 
 class Submission(SubmissionBase):

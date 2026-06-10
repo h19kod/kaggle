@@ -11,7 +11,7 @@ class NotebookBase(BaseModel):
 
 
 class NotebookCreate(NotebookBase):
-    creator_id: int
+    creator_id: Optional[int] = None
     forked_from_id: Optional[int] = None
 
 

@@ -24,12 +24,12 @@ class DatasetBase(BaseModel):
     title: str
     slug: str
     description: Optional[str] = None
-    status: Optional[str] = "Pending"
+    status: Optional[str] = "PENDING"
     is_public: Optional[bool] = True
 
 
 class DatasetCreate(DatasetBase):
-    owner_id: int
+    owner_id: Optional[int] = None
 
 
 class DatasetUpdate(BaseModel):
